@@ -1,0 +1,112 @@
+{
+  "xiaomi": {
+    "name": "Xiaomi",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o telefone.",
+      "Toque várias vezes em Versão do SO (MIUI ou HyperOS) até aparecer a confirmação de que as opções do desenvolvedor foram ativadas.",
+      "Volte para Configurações > Configurações adicionais > Opções do desenvolvedor.",
+      "Ative Depuração USB e confirme. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "samsung": {
+    "name": "Samsung",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o telefone > Informações do software.",
+      "Toque sete vezes em Número da versão e confirme com seu PIN, se solicitado.",
+      "Volte para Configurações > Opções do desenvolvedor.",
+      "Ative Depuração USB e confirme. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "lg": {
+    "name": "LG",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Geral > Sobre o telefone > Informações do software.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "realme": {
+    "name": "Realme",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o dispositivo > Versão.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Configurações adicionais > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "oppo": {
+    "name": "Oppo",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o dispositivo > Versão.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Configurações adicionais > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "motorola": {
+    "name": "Motorola",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o telefone.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Sistema > Avançado > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "infinix": {
+    "name": "Infinix",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Meu telefone ou Sobre o telefone.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Sistema ou Configurações adicionais > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "lenovo": {
+    "name": "Lenovo",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o telefone (ou Sobre o tablet).",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Sistema > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "vivo": {
+    "name": "Vivo",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o telefone > Informações do software.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Gerenciamento do sistema (ou Mais configurações) > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "asus": {
+    "name": "Asus",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sistema > Sobre o telefone.",
+      "Toque sete vezes em Número da versão e confirme, se solicitado.",
+      "Volte para Configurações > Sistema > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  },
+  "android": {
+    "name": "Android",
+    "imageUrl": "",
+    "steps": [
+      "Abra Configurações > Sobre o telefone.",
+      "Toque sete vezes em Número da versão e confirme com seu PIN, se solicitado.",
+      "Volte para Configurações > Sistema (ou Configurações adicionais) > Opções do desenvolvedor.",
+      "Ative Depuração USB. Conecte o cabo e aceite a chave RSA no celular."
+    ]
+  }
+}
