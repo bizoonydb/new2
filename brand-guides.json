@@ -1,7 +1,7 @@
 {
   "xiaomi": {
     "name": "Xiaomi",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/xiaomilg.jpeg",
     "steps": [
       "Abra Configurações > Sobre o telefone.",
       "Toque várias vezes em Versão do SO (MIUI ou HyperOS) até aparecer a confirmação de que as opções do desenvolvedor foram ativadas.",
@@ -11,7 +11,7 @@
   },
   "samsung": {
     "name": "Samsung",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/samsung.jpeg",
     "steps": [
       "Abra Configurações > Sobre o telefone > Informações do software.",
       "Toque sete vezes em Número da versão e confirme com seu PIN, se solicitado.",
@@ -21,7 +21,7 @@
   },
   "lg": {
     "name": "LG",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/lg.jpeg",
     "steps": [
       "Abra Configurações > Geral > Sobre o telefone > Informações do software.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -31,7 +31,7 @@
   },
   "realme": {
     "name": "Realme",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Sobre o dispositivo > Versão.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -41,7 +41,7 @@
   },
   "oppo": {
     "name": "Oppo",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Sobre o dispositivo > Versão.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -51,7 +51,7 @@
   },
   "motorola": {
     "name": "Motorola",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/moto.jpeg",
     "steps": [
       "Abra Configurações > Sobre o telefone.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -61,7 +61,7 @@
   },
   "infinix": {
     "name": "Infinix",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Meu telefone ou Sobre o telefone.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -71,7 +71,7 @@
   },
   "lenovo": {
     "name": "Lenovo",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Sobre o telefone (ou Sobre o tablet).",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -81,7 +81,7 @@
   },
   "vivo": {
     "name": "Vivo",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Sobre o telefone > Informações do software.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -91,7 +91,7 @@
   },
   "asus": {
     "name": "Asus",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Sistema > Sobre o telefone.",
       "Toque sete vezes em Número da versão e confirme, se solicitado.",
@@ -101,7 +101,7 @@
   },
   "android": {
     "name": "Android",
-    "imageUrl": "",
+    "imageUrl": "https://bizoonydb.github.io/new2/others.jpeg",
     "steps": [
       "Abra Configurações > Sobre o telefone.",
       "Toque sete vezes em Número da versão e confirme com seu PIN, se solicitado.",
