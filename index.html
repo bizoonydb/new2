@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090909">
+  <title>DB TESTER</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090909;
+      --panel: #141414;
+      --panel-soft: #202020;
+      --line: #393323;
+      --text: #f7f4e8;
+      --muted: #b6b09b;
+      --accent: #ffd21f;
+      --blue: #ffd21f;
+      --warning: #ffe15a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 85% 0%, #29230d 0, transparent 35rem),
+        var(--bg);
+      color: var(--text);
+      font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    .shell { width: min(1050px, 100%); margin: auto; padding: 28px 22px 50px; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+    .brand-mark {
+      display: grid; place-items: center; width: 46px; height: 46px;
+      border: 1px solid #685410; border-radius: 15px; color: var(--accent);
+      background: #211b08; font-size: 23px;
+    }
+    h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: -.04em; }
+    .subtitle { margin: 3px 0 0; color: var(--muted); }
+    .intro {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      padding: 22px 24px; border: 1px solid var(--line); border-radius: 20px;
+      background: linear-gradient(120deg, #211d10, #151515);
+    }
+    .intro h2 { margin: 0 0 5px; font-size: 18px; }
+    .intro p { max-width: 650px; margin: 0; color: var(--muted); }
+    .device-icon { color: var(--accent); font-size: 40px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; margin: 30px 2px 14px; }
+    .section-heading h2 { margin: 0; font-size: 19px; }
+    .section-heading span { color: var(--muted); font-size: 13px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .card {
+      min-width: 0; padding: 19px; border: 1px solid var(--line);
+      border-radius: 18px; background: color-mix(in srgb, var(--panel) 94%, transparent);
+    }
+    .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .icon {
+      display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 auto;
+      border-radius: 13px; background: #2a240f; color: var(--blue); font-size: 19px;
+    }
+    .card h3 { margin: 0; font-size: 16px; }
+    .card p { min-height: 42px; margin: 0 0 15px; color: var(--muted); font-size: 13px; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+    .btn {
+      min-height: 40px; padding: 9px 14px; border: 1px solid #514927;
+      border-radius: 11px; background: var(--panel-soft); cursor: pointer;
+      transition: background .15s, border-color .15s, transform .15s;
+    }
+    .btn:hover { border-color: #b39727; background: #30290f; }
+    .btn:active { transform: scale(.98); }
+    .btn.primary { border-color: #ffe15a; background: #d3a900; color: #171300; font-weight: 650; }
+    .btn.primary:hover { background: #f0c400; }
+    .btn:disabled { opacity: .55; cursor: not-allowed; }
+    .status { margin-top: 11px; color: var(--muted); font-size: 12px; }
+    .status strong { color: var(--accent); font-weight: 600; }
+    .meter { height: 9px; margin: 15px 0 7px; overflow: hidden; border-radius: 9px; background: #393323; }
+    .meter-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #d6aa00, #ffe15a); transition: width .08s; }
+    .sensor-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 13px 0; }
+    .value { padding: 9px; border-radius: 10px; background: #0e0e0e; color: var(--muted); font-size: 12px; }
+    .value b { display: block; color: var(--text); font-size: 14px; font-variant-numeric: tabular-nums; }
+    video { display: none; width: 100%; max-height: 220px; margin-top: 12px; border-radius: 12px; background: #05080c; object-fit: cover; }
+    .footnote { margin: 20px 2px 0; color: var(--muted); font-size: 12px; }
+    .screen-test {
+      position: fixed; z-index: 10; inset: 0; display: none; place-items: center;
+      color: #fff; text-align: center; cursor: pointer;
+    }
+    .screen-test.active { display: grid; }
+    .screen-label {
+      padding: 8px 13px; border-radius: 20px; background: #0008;
+      font-size: 13px; text-shadow: 0 1px 3px #000;
+    }
+    .screen-hint {
+      position: absolute; right: 14px; bottom: max(16px, env(safe-area-inset-bottom));
+      left: 14px; color: #fff; font-size: 12px; text-shadow: 0 1px 4px #000;
+    }
+    .touch-test {
+      position: fixed; z-index: 20; inset: 0; display: none; overflow: hidden;
+      background: #090909; touch-action: none; user-select: none;
+    }
+    .touch-test.active { display: block; }
+    .touch-grid {
+      display: grid; width: 100%; height: 100%; height: 100dvh;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      grid-template-rows: repeat(16, minmax(0, 1fr));
+      gap: 2px; padding: max(6px, env(safe-area-inset-top)) 6px max(6px, env(safe-area-inset-bottom));
+    }
+    .touch-cell {
+      min-width: 0; min-height: 0; border: 1px solid #393323;
+      border-radius: 3px; background: #151515;
+    }
+    .touch-cell.target { border-color: #a28719; background: #2c260f; }
+    .touch-cell.filled { border-color: #ffe15a; background: #d3a900; }
+    .touch-hud {
+      position: absolute; z-index: 1; top: 0; right: 0; left: 0; display: flex;
+      justify-content: space-between; align-items: center; gap: 12px;
+      padding: max(12px, env(safe-area-inset-top)) 16px 14px;
+      background: linear-gradient(#090909ed, #09090988, transparent);
+      color: #f2f6fc; font-size: 13px; pointer-events: none;
+    }
+    .touch-hud strong { color: var(--accent); white-space: nowrap; }
+    .touch-hud.bottom {
+      top: auto; bottom: 0; justify-content: center; padding: 22px 16px max(16px, env(safe-area-inset-bottom));
+      background: linear-gradient(transparent, #090909ed); color: #e5dfcb; text-align: center;
+    }
+    .proximity-indicator {
+      display: grid; min-height: 76px; place-items: center; margin-top: 13px;
+      border: 1px solid #514927; border-radius: 12px; background: #151515;
+      color: #e4ecf7; font-weight: 650; text-align: center;
+    }
+    .proximity-indicator.near { border-color: #45c69e; background: #15513f; color: #c6ffe9; }
+    .proximity-indicator.far { border-color: #e05b64; background: #642b32; color: #ffe0e2; }
+    .multitouch-test {
+      position: fixed; z-index: 30; inset: 0; display: none; overflow: hidden;
+      background: #090909; touch-action: none; user-select: none;
+    }
+    .multitouch-test.active { display: block; }
+    .multitouch-hud {
+      position: absolute; z-index: 1; top: 0; right: 0; left: 0; display: flex;
+      justify-content: space-between; align-items: center; gap: 12px;
+      padding: max(16px, env(safe-area-inset-top)) 18px 18px;
+      background: linear-gradient(#090909ed, #09090988, transparent);
+      color: var(--text); font-size: 14px; pointer-events: none;
+    }
+    .multitouch-hud strong { color: var(--accent); white-space: nowrap; }
+    .multitouch-footer {
+      position: absolute; right: 0; bottom: 0; left: 0; display: flex;
+      justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px;
+      padding: 28px 16px max(16px, env(safe-area-inset-bottom));
+      background: linear-gradient(transparent, #090909ed); color: var(--muted);
+      text-align: center;
+    }
+    .multitouch-result { flex-basis: 100%; }
+    .multitouch-result.complete { color: var(--accent); font-weight: 700; }
+    .multitouch-contact {
+      position: absolute; width: 82px; height: 82px; display: grid; place-items: center;
+      border: 3px solid var(--accent); border-radius: 50%;
+      background: #ffd21f55; color: #fff; font-size: 18px; font-weight: 750;
+      text-shadow: 0 1px 3px #000; transform: translate(-50%, -50%);
+      pointer-events: none; box-shadow: 0 0 25px #ffd21f55;
+    }
+    @media (max-width: 650px) {
+      .shell { padding: 21px 15px 35px; }
+      .grid { grid-template-columns: 1fr; gap: 11px; }
+      .card { padding: 17px; }
+      .intro { padding: 18px; }
+      .device-icon { font-size: 32px; }
+      .card p { min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="brand-mark" aria-hidden="true">⌁</div>
+      <div>
+        <h1>DB TESTER</h1>
+        <p class="subtitle">Testes rápidos para tela, áudio e sensores</p>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <h2>Faça um teste por vez</h2>
+        <p>Use os controles abaixo para verificar componentes. Microfone e câmera pedem sua autorização; os dados ficam no navegador e não são enviados.</p>
+      </div>
+      <div class="device-icon" aria-hidden="true">▯</div>
+    </section>
+
+    <div class="section-heading">
+      <h2>Testes disponíveis</h2>
+      <span>Compatibilidade depende do aparelho e navegador</span>
+    </div>
+
+    <section class="grid" aria-label="Testes de hardware">
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">◉</div><h3>Tela e pixels</h3></div>
+        <p>Exiba cores sólidas para observar manchas, pixels presos ou diferenças de brilho.</p>
+        <div class="actions">
+          <button class="btn primary" id="screen-start">Iniciar teste de tela</button>
+          <button class="btn" id="fullscreen">Tela cheia</button>
+        </div>
+        <div class="status">Toque na tela para avançar pelas cores.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">♫</div><h3>Alto-falante</h3></div>
+        <p>Toque um tom de teste. Comece com volume baixo e aumente gradualmente.</p>
+        <div class="actions">
+          <button class="btn primary" id="tone-start">Tocar tom</button>
+          <button class="btn" id="tone-stop" disabled>Parar</button>
+          <label class="status">Tom <input id="frequency" type="range" min="150" max="1800" value="650" aria-label="Frequência do tom"></label>
+        </div>
+        <div class="status" id="tone-status" aria-live="polite">A saída de áudio será reproduzida neste aparelho.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">♩</div><h3>Microfone</h3></div>
+        <p>Fale ou faça um som para conferir se o nível de entrada reage.</p>
+        <div class="actions">
+          <button class="btn primary" id="mic-start">Testar microfone</button>
+          <button class="btn" id="mic-stop" disabled>Parar</button>
+        </div>
+        <div class="meter" role="meter" aria-label="Nível de áudio do microfone" aria-valuemin="0" aria-valuemax="100"><div class="meter-fill" id="mic-level"></div></div>
+        <div class="status" id="mic-status" aria-live="polite">O acesso ao microfone só começa após sua autorização.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">▣</div><h3>Câmera</h3></div>
+        <p>Abra uma prévia local para verificar a câmera e a imagem capturada.</p>
+        <div class="actions">
+          <button class="btn primary" id="camera-start">Abrir câmera</button>
+          <button class="btn" id="camera-stop" disabled>Fechar câmera</button>
+        </div>
+        <video id="camera-preview" playsinline autoplay muted></video>
+        <div class="status" id="camera-status" aria-live="polite">A imagem não é gravada nem enviada.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">⌖</div><h3>Movimento e orientação</h3></div>
+        <p>Mova e incline o aparelho para observar os sensores que o navegador disponibilizar.</p>
+        <div class="actions"><button class="btn primary" id="motion-start">Iniciar sensores</button></div>
+        <div class="sensor-values">
+          <div class="value">Aceleração X<b id="axis-x">—</b></div>
+          <div class="value">Aceleração Y<b id="axis-y">—</b></div>
+          <div class="value">Aceleração Z<b id="axis-z">—</b></div>
+        </div>
+        <div class="status" id="motion-status" aria-live="polite">Alguns navegadores exigem acesso ou não oferecem esses sensores.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">◉</div><h3>Sensor de proximidade</h3></div>
+        <p>Inicie o teste e tampe com a mão a região do sensor, geralmente perto da câmera frontal.</p>
+        <div class="actions">
+          <button class="btn primary" id="proximity-start">Iniciar teste</button>
+          <button class="btn" id="proximity-stop" disabled>Parar</button>
+        </div>
+        <div class="proximity-indicator" id="proximity-indicator" role="status" aria-live="polite">Aguardando início do teste</div>
+        <div class="status" id="proximity-status">O resultado depende de o navegador permitir acesso ao sensor real.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">✣</div><h3>Vibração</h3></div>
+        <p>Acione uma vibração curta para verificar se o aparelho responde.</p>
+        <div class="actions"><button class="btn primary" id="vibrate">Vibrar</button></div>
+        <div class="status" id="vibrate-status" aria-live="polite">Requer suporte do navegador e hardware com vibração.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">▦</div><h3>Toque na tela</h3></div>
+        <p>Preencha todos os quadradinhos com o dedo, cruzando o X e alcançando os quatro cantos.</p>
+        <div class="actions"><button class="btn primary" id="touch-start">Iniciar teste de toque</button></div>
+        <div class="status" id="touch-status" aria-live="polite">O teste abre em tela cheia e termina quando todos os quadradinhos forem tocados.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">✣</div><h3>Multitoque</h3></div>
+        <p>Toque na tela com até cinco dedos ao mesmo tempo e veja quantos pontos o aparelho reconhece.</p>
+        <div class="actions"><button class="btn primary" id="multitouch-start">Iniciar teste de multitoque</button></div>
+        <div class="status" id="multitouch-status" aria-live="polite">Teste até cinco toques simultâneos, se a tela suportar.</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><div class="icon" aria-hidden="true">▤</div><h3>Bateria</h3></div>
+        <p>Consulte o nível e o estado de carregamento, se o navegador permitir.</p>
+        <div class="sensor-values">
+          <div class="value">Carga<b id="battery-level">—</b></div>
+          <div class="value">Estado<b id="battery-charging">—</b></div>
+          <div class="value">Tempo estimado<b id="battery-time">—</b></div>
+        </div>
+        <div class="status" id="battery-status" aria-live="polite">A API de bateria não está disponível em todos os navegadores.</div>
+      </article>
+    </section>
+
+    <p class="footnote">Este diagnóstico usa APIs públicas do navegador e não substitui os testes de fábrica do fabricante. Recursos como IMEI, proximidade, saúde da bateria e componentes internos normalmente não podem ser lidos por uma página web.</p>
+  </main>
+
+  <div class="screen-test" id="screen-test" role="button" tabindex="0" aria-label="Tela de teste de cores">
+    <span class="screen-label" id="screen-label"></span>
+    <span class="screen-hint">Toque para próxima cor · pressione Esc para sair</span>
+  </div>
+
+  <div class="touch-test" id="touch-test" aria-label="Teste de toque em tela cheia">
+    <div class="touch-hud"><span>Preencha todos os quadradinhos · faça um X e toque nos cantos</span><strong id="touch-progress">0 / 160</strong></div>
+    <div class="touch-grid" id="touch-grid"></div>
+    <div class="touch-hud bottom">Arraste o dedo pela tela · Esc para sair</div>
+  </div>
+
+  <div class="multitouch-test" id="multitouch-test" aria-label="Teste de multitoque">
+    <div class="multitouch-hud">
+      <span>Encoste vários dedos ao mesmo tempo</span>
+      <strong id="multitouch-count">0 toques</strong>
+    </div>
+    <div class="multitouch-footer">
+      <span class="multitouch-result" id="multitouch-result" aria-live="polite">Use até cinco dedos simultaneamente · Esc para sair</span>
+      <button class="btn primary" id="multitouch-finish">Finalizar teste</button>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const screenColors = [
+      { name: "Vermelho", color: "#ff0000" },
+      { name: "Verde", color: "#00d900" },
+      { name: "Azul", color: "#0000ff" },
+      { name: "Branco", color: "#ffffff" },
+      { name: "Preto", color: "#000000" }
+    ];
+    let screenIndex = 0;
+
+    function showScreenColor() {
+      const current = screenColors[screenIndex];
+      $("screen-test").style.background = current.color;
+      $("screen-label").textContent = `${current.name} · ${screenIndex + 1}/${screenColors.length}`;
+    }
+
+    function closeScreenTest() {
+      $("screen-test").classList.remove("active");
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    }
+
+    $("screen-start").addEventListener("click", () => {
+      screenIndex = 0;
+      $("screen-test").classList.add("active");
+      showScreenColor();
+    });
+    $("screen-test").addEventListener("click", () => {
+      screenIndex += 1;
+      if (screenIndex >= screenColors.length) closeScreenTest();
+      else showScreenColor();
+    });
+    $("screen-test").addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeScreenTest();
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        $("screen-test").click();
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeScreenTest();
+    });
+    $("fullscreen").addEventListener("click", async () => {
+      try {
+        if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+        else await document.exitFullscreen();
+      } catch {
+        $("screen-label").textContent = "Tela cheia não disponível neste navegador";
+      }
+    });
+
+    let audioContext;
+    let oscillator;
+    let gainNode;
+    function stopTone() {
+      if (oscillator) {
+        oscillator.stop();
+        oscillator.disconnect();
+        oscillator = null;
+      }
+      if (gainNode) {
+        gainNode.disconnect();
+        gainNode = null;
+      }
+      $("tone-start").disabled = false;
+      $("tone-stop").disabled = true;
+      $("tone-status").textContent = "Tom de teste parado.";
+    }
+    $("tone-start").addEventListener("click", async () => {
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) throw new Error("Áudio Web não suportado.");
+        audioContext = audioContext || new AudioContextClass();
+        await audioContext.resume();
+        oscillator = audioContext.createOscillator();
+        gainNode = audioContext.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.value = Number($("frequency").value);
+        gainNode.gain.value = 0.12;
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.start();
+        $("tone-start").disabled = true;
+        $("tone-stop").disabled = false;
+        $("tone-status").textContent = `Reproduzindo tom de ${oscillator.frequency.value} Hz.`;
+      } catch (error) {
+        $("tone-status").textContent = `Não foi possível iniciar o áudio: ${error.message}`;
+      }
+    });
+    $("tone-stop").addEventListener("click", stopTone);
+    $("frequency").addEventListener("input", () => {
+      if (oscillator) {
+        oscillator.frequency.value = Number($("frequency").value);
+        $("tone-status").textContent = `Reproduzindo tom de ${oscillator.frequency.value} Hz.`;
+      }
+    });
+
+    let microphoneStream;
+    let microphoneContext;
+    let meterFrame;
+    async function stopMicrophone() {
+      if (meterFrame) cancelAnimationFrame(meterFrame);
+      if (microphoneStream) microphoneStream.getTracks().forEach((track) => track.stop());
+      if (microphoneContext && microphoneContext.state !== "closed") await microphoneContext.close();
+      microphoneStream = null;
+      microphoneContext = null;
+      $("mic-level").style.width = "0";
+      $("mic-start").disabled = false;
+      $("mic-stop").disabled = true;
+      $("mic-status").textContent = "Microfone parado.";
+    }
+    $("mic-start").addEventListener("click", async () => {
+      try {
+        if (!navigator.mediaDevices?.getUserMedia) throw new Error("Microfone não disponível. Use HTTPS ou localhost.");
+        microphoneStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        microphoneContext = new AudioContextClass();
+        const source = microphoneContext.createMediaStreamSource(microphoneStream);
+        const analyser = microphoneContext.createAnalyser();
+        analyser.fftSize = 512;
+        source.connect(analyser);
+        const samples = new Uint8Array(analyser.fftSize);
+        $("mic-start").disabled = true;
+        $("mic-stop").disabled = false;
+        $("mic-status").textContent = "Microfone ativo. Fale para observar o nível.";
+        const updateMeter = () => {
+          analyser.getByteTimeDomainData(samples);
+          let sum = 0;
+          for (const sample of samples) sum += (sample - 128) ** 2;
+          const rms = Math.sqrt(sum / samples.length);
+          const level = Math.min(100, Math.round(rms * 1.8));
+          $("mic-level").style.width = `${level}%`;
+          $("mic-level").parentElement.setAttribute("aria-valuenow", String(level));
+          meterFrame = requestAnimationFrame(updateMeter);
+        };
+        updateMeter();
+      } catch (error) {
+        if (microphoneStream) microphoneStream.getTracks().forEach((track) => track.stop());
+        microphoneStream = null;
+        $("mic-status").textContent = `Não foi possível acessar o microfone: ${error.message}`;
+      }
+    });
+    $("mic-stop").addEventListener("click", stopMicrophone);
+
+    let cameraStream;
+    $("camera-start").addEventListener("click", async () => {
+      try {
+        if (!navigator.mediaDevices?.getUserMedia) throw new Error("Câmera não disponível. Use HTTPS ou localhost.");
+        cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+        $("camera-preview").srcObject = cameraStream;
+        $("camera-preview").style.display = "block";
+        $("camera-start").disabled = true;
+        $("camera-stop").disabled = false;
+        $("camera-status").textContent = "Câmera ativa. A prévia é local.";
+      } catch (error) {
+        $("camera-status").textContent = `Não foi possível abrir a câmera: ${error.message}`;
+      }
+    });
+    $("camera-stop").addEventListener("click", () => {
+      if (cameraStream) cameraStream.getTracks().forEach((track) => track.stop());
+      cameraStream = null;
+      $("camera-preview").srcObject = null;
+      $("camera-preview").style.display = "none";
+      $("camera-start").disabled = false;
+      $("camera-stop").disabled = true;
+      $("camera-status").textContent = "Câmera fechada.";
+    });
+
+    $("motion-start").addEventListener("click", async () => {
+      try {
+        if (typeof DeviceMotionEvent === "undefined") throw new Error("Sensor de movimento não suportado.");
+        if (typeof DeviceMotionEvent.requestPermission === "function") {
+          const permission = await DeviceMotionEvent.requestPermission();
+          if (permission !== "granted") throw new Error("Acesso aos sensores não autorizado.");
+        }
+        window.addEventListener("devicemotion", (event) => {
+          const acceleration = event.accelerationIncludingGravity;
+          $("axis-x").textContent = acceleration?.x == null ? "—" : `${acceleration.x.toFixed(1)} m/s²`;
+          $("axis-y").textContent = acceleration?.y == null ? "—" : `${acceleration.y.toFixed(1)} m/s²`;
+          $("axis-z").textContent = acceleration?.z == null ? "—" : `${acceleration.z.toFixed(1)} m/s²`;
+        });
+        $("motion-status").textContent = "Sensor ativo. Incline ou mova o aparelho.";
+        $("motion-start").disabled = true;
+      } catch (error) {
+        $("motion-status").textContent = `Sensores indisponíveis: ${error.message}`;
+      }
+    });
+
+    let proximitySensor;
+    function setProximityState(state, message) {
+      const indicator = $("proximity-indicator");
+      indicator.classList.remove("near", "far");
+      if (state === "near") indicator.classList.add("near");
+      if (state === "far") indicator.classList.add("far");
+      indicator.textContent = message;
+    }
+
+    function stopProximitySensor() {
+      if (proximitySensor) {
+        proximitySensor.removeEventListener("reading", onProximityReading);
+        proximitySensor.removeEventListener("error", onProximityError);
+        proximitySensor.stop();
+        proximitySensor = null;
+      }
+      $("proximity-start").disabled = false;
+      $("proximity-stop").disabled = true;
+    }
+
+    function onProximityReading() {
+      if (!proximitySensor) return;
+      if (proximitySensor.near) {
+        setProximityState("near", "Verde — sensor coberto / objeto próximo");
+        $("proximity-status").textContent = "Proximidade detectada pelo sensor.";
+      } else {
+        setProximityState("far", "Vermelho — sem aproximação; tampe o sensor");
+        $("proximity-status").textContent = "Nenhum objeto próximo foi detectado.";
+      }
+    }
+
+    function onProximityError(event) {
+      const error = event.error;
+      stopProximitySensor();
+      if (error?.name === "NotAllowedError" || error?.name === "SecurityError") {
+        $("proximity-status").textContent = "Acesso ao sensor negado pelo navegador ou pela página.";
+      } else if (error?.name === "NotReadableError") {
+        $("proximity-status").textContent = "O sensor não pôde ser lido. Pode estar indisponível ou em uso.";
+      } else {
+        $("proximity-status").textContent = `Falha ao ler o sensor de proximidade${error?.message ? `: ${error.message}` : "."}`;
+      }
+      setProximityState("", "Sensor indisponível");
+    }
+
+    $("proximity-start").addEventListener("click", () => {
+      if (!("ProximitySensor" in window)) {
+        setProximityState("", "Sensor não disponível neste navegador");
+        $("proximity-status").textContent = "Este navegador não oferece acesso web ao sensor de proximidade. Não é possível testar sem leitura real.";
+        return;
+      }
+      try {
+        proximitySensor = new ProximitySensor({ frequency: 5 });
+        proximitySensor.addEventListener("reading", onProximityReading);
+        proximitySensor.addEventListener("error", onProximityError);
+        proximitySensor.start();
+        $("proximity-start").disabled = true;
+        $("proximity-stop").disabled = false;
+        setProximityState("far", "Vermelho — sem aproximação; tampe o sensor");
+        $("proximity-status").textContent = "Teste ativo: cubra e descubra o sensor para observar a mudança.";
+      } catch (error) {
+        proximitySensor = null;
+        setProximityState("", "Sensor indisponível");
+        $("proximity-status").textContent = `Não foi possível iniciar o sensor: ${error.message}`;
+      }
+    });
+    $("proximity-stop").addEventListener("click", () => {
+      stopProximitySensor();
+      setProximityState("", "Teste parado");
+      $("proximity-status").textContent = "O teste foi encerrado.";
+    });
+
+    $("vibrate").addEventListener("click", () => {
+      if (navigator.vibrate) {
+        navigator.vibrate([180, 90, 180]);
+        $("vibrate-status").textContent = "Solicitação de vibração enviada.";
+      } else {
+        $("vibrate-status").textContent = "Vibração não suportada por este navegador ou aparelho.";
+      }
+    });
+
+    const touchGrid = $("touch-grid");
+    const touchColumns = 10;
+    const touchRows = 16;
+    const touchTotal = touchColumns * touchRows;
+    const touchedCells = new Set();
+    let previousTouchCell = null;
+    let touchTestActive = false;
+
+    function closeTouchTest(completed = false) {
+      touchTestActive = false;
+      previousTouchCell = null;
+      $("touch-test").classList.remove("active");
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      if (completed) $("touch-status").textContent = "Teste concluído: todos os quadradinhos foram tocados.";
+    }
+
+    function markTouchCell(index) {
+      if (index < 0 || index >= touchTotal || touchedCells.has(index)) return;
+      touchedCells.add(index);
+      touchGrid.children[index].classList.add("filled");
+      $("touch-progress").textContent = `${touchedCells.size} / ${touchTotal}`;
+      if (touchedCells.size === touchTotal) closeTouchTest(true);
+    }
+
+    function markTouchPath(from, to) {
+      if (!from) {
+        markTouchCell(to);
+        return;
+      }
+      const startColumn = from % touchColumns;
+      const startRow = Math.floor(from / touchColumns);
+      const endColumn = to % touchColumns;
+      const endRow = Math.floor(to / touchColumns);
+      const steps = Math.max(Math.abs(endColumn - startColumn), Math.abs(endRow - startRow));
+      for (let step = 0; step <= steps; step += 1) {
+        const progress = steps === 0 ? 0 : step / steps;
+        const column = Math.round(startColumn + (endColumn - startColumn) * progress);
+        const row = Math.round(startRow + (endRow - startRow) * progress);
+        markTouchCell(row * touchColumns + column);
+        if (!touchTestActive) break;
+      }
+    }
+
+    function touchCellAtPoint(x, y) {
+      const bounds = touchGrid.getBoundingClientRect();
+      if (x < bounds.left || x > bounds.right || y < bounds.top || y > bounds.bottom) return null;
+      const first = touchGrid.children[0].getBoundingClientRect();
+      const nextColumn = touchGrid.children[1].getBoundingClientRect();
+      const nextRow = touchGrid.children[touchColumns].getBoundingClientRect();
+      const columnStep = nextColumn.left - first.left;
+      const rowStep = nextRow.top - first.top;
+      const column = Math.max(0, Math.min(touchColumns - 1,
+        Math.round((x - first.left - first.width / 2) / columnStep)));
+      const row = Math.max(0, Math.min(touchRows - 1,
+        Math.round((y - first.top - first.height / 2) / rowStep)));
+      return row * touchColumns + column;
+    }
+
+    for (let row = 0; row < touchRows; row += 1) {
+      for (let column = 0; column < touchColumns; column += 1) {
+        const cell = document.createElement("span");
+        const onDiagonal = Math.abs(column - row * (touchColumns - 1) / (touchRows - 1)) < 1 ||
+          Math.abs(column - (touchColumns - 1) * (1 - row / (touchRows - 1))) < 1;
+        const inCorner = (column < 2 || column >= touchColumns - 2) &&
+          (row < 2 || row >= touchRows - 2);
+        cell.className = `touch-cell${onDiagonal || inCorner ? " target" : ""}`;
+        cell.dataset.index = String(row * touchColumns + column);
+        cell.setAttribute("aria-hidden", "true");
+        touchGrid.append(cell);
+      }
+    }
+
+    touchGrid.addEventListener("pointerdown", (event) => {
+      if (!touchTestActive) return;
+      event.preventDefault();
+      touchGrid.setPointerCapture(event.pointerId);
+      previousTouchCell = touchCellAtPoint(event.clientX, event.clientY);
+      if (previousTouchCell !== null) markTouchPath(null, previousTouchCell);
+    });
+    touchGrid.addEventListener("pointermove", (event) => {
+      if (!touchTestActive || !touchGrid.hasPointerCapture(event.pointerId)) return;
+      event.preventDefault();
+      const currentCell = touchCellAtPoint(event.clientX, event.clientY);
+      if (currentCell === null) return;
+      markTouchPath(previousTouchCell, currentCell);
+      previousTouchCell = currentCell;
+    });
+    touchGrid.addEventListener("pointerup", (event) => {
+      if (touchGrid.hasPointerCapture(event.pointerId)) touchGrid.releasePointerCapture(event.pointerId);
+      previousTouchCell = null;
+    });
+    touchGrid.addEventListener("pointercancel", () => { previousTouchCell = null; });
+
+    $("touch-start").addEventListener("click", async () => {
+      touchedCells.clear();
+      touchGrid.querySelectorAll(".filled").forEach((cell) => cell.classList.remove("filled"));
+      $("touch-progress").textContent = `0 / ${touchTotal}`;
+      $("touch-status").textContent = "Teste em andamento: preencha todos os quadradinhos.";
+      touchTestActive = true;
+      $("touch-test").classList.add("active");
+      try {
+        if (document.documentElement.requestFullscreen) await $("touch-test").requestFullscreen();
+      } catch {
+        $("touch-status").textContent = "Teste iniciado. Este navegador não permitiu ativar a tela cheia.";
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && touchTestActive) closeTouchTest();
+    });
+
+    const multitouchStage = $("multitouch-test");
+    const activeTouches = new Map();
+    const multitouchGoal = 5;
+    let maxSimultaneousTouches = 0;
+    let multitouchActive = false;
+
+    function updateMultitouchCount() {
+      const count = activeTouches.size;
+      $("multitouch-count").textContent = `${count} ${count === 1 ? "toque" : "toques"} · máximo ${maxSimultaneousTouches}`;
+      if (maxSimultaneousTouches >= multitouchGoal) {
+        $("multitouch-result").textContent = `${multitouchGoal} toques simultâneos reconhecidos!`;
+        $("multitouch-result").classList.add("complete");
+      } else {
+        $("multitouch-result").textContent = `Toque com até ${multitouchGoal} dedos ao mesmo tempo · Esc para sair`;
+        $("multitouch-result").classList.remove("complete");
+      }
+    }
+
+    function finishMultitouchTest() {
+      multitouchActive = false;
+      activeTouches.clear();
+      multitouchStage.querySelectorAll(".multitouch-contact").forEach((contact) => contact.remove());
+      multitouchStage.classList.remove("active");
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      $("multitouch-status").textContent =
+        `Teste finalizado. Maior quantidade reconhecida: ${maxSimultaneousTouches} ${maxSimultaneousTouches === 1 ? "toque" : "toques"} simultâneos.`;
+    }
+
+    function updateContactPosition(contact, event) {
+      const bounds = multitouchStage.getBoundingClientRect();
+      contact.element.style.left = `${event.clientX - bounds.left}px`;
+      contact.element.style.top = `${event.clientY - bounds.top}px`;
+    }
+
+    multitouchStage.addEventListener("pointerdown", (event) => {
+      if (!multitouchActive || event.target.closest("button") || activeTouches.has(event.pointerId)) return;
+      event.preventDefault();
+      const contactElement = document.createElement("span");
+      contactElement.className = "multitouch-contact";
+      contactElement.textContent = String(activeTouches.size + 1);
+      multitouchStage.append(contactElement);
+      const contact = { element: contactElement };
+      activeTouches.set(event.pointerId, contact);
+      updateContactPosition(contact, event);
+      maxSimultaneousTouches = Math.max(maxSimultaneousTouches, activeTouches.size);
+      updateMultitouchCount();
+      multitouchStage.setPointerCapture(event.pointerId);
+    });
+
+    multitouchStage.addEventListener("pointermove", (event) => {
+      const contact = activeTouches.get(event.pointerId);
+      if (!multitouchActive || !contact) return;
+      event.preventDefault();
+      updateContactPosition(contact, event);
+    });
+
+    function releaseMultitouchPointer(event) {
+      const contact = activeTouches.get(event.pointerId);
+      if (!contact) return;
+      contact.element.remove();
+      activeTouches.delete(event.pointerId);
+      updateMultitouchCount();
+      if (multitouchStage.hasPointerCapture(event.pointerId)) {
+        multitouchStage.releasePointerCapture(event.pointerId);
+      }
+    }
+
+    multitouchStage.addEventListener("pointerup", releaseMultitouchPointer);
+    multitouchStage.addEventListener("pointercancel", releaseMultitouchPointer);
+    $("multitouch-start").addEventListener("click", async () => {
+      activeTouches.clear();
+      multitouchStage.querySelectorAll(".multitouch-contact").forEach((contact) => contact.remove());
+      maxSimultaneousTouches = 0;
+      multitouchActive = true;
+      updateMultitouchCount();
+      multitouchStage.classList.add("active");
+      $("multitouch-status").textContent = "Teste em andamento.";
+      try {
+        if (multitouchStage.requestFullscreen) await multitouchStage.requestFullscreen();
+      } catch {
+        $("multitouch-status").textContent = "Teste iniciado sem tela cheia; este navegador não permitiu ativá-la.";
+      }
+    });
+    $("multitouch-finish").addEventListener("click", finishMultitouchTest);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && multitouchActive) finishMultitouchTest();
+    });
+
+    async function loadBattery() {
+      try {
+        if (!navigator.getBattery) throw new Error("API não suportada.");
+        const battery = await navigator.getBattery();
+        const update = () => {
+          $("battery-level").textContent = `${Math.round(battery.level * 100)}%`;
+          $("battery-charging").textContent = battery.charging ? "Carregando" : "Na bateria";
+          const seconds = battery.charging ? battery.chargingTime : battery.dischargingTime;
+          $("battery-time").textContent = Number.isFinite(seconds) ? `${Math.round(seconds / 60)} min` : "—";
+          $("battery-status").textContent = "Informações fornecidas pelo navegador; estimativas podem variar.";
+        };
+        update();
+        battery.addEventListener("levelchange", update);
+        battery.addEventListener("chargingchange", update);
+        battery.addEventListener("chargingtimechange", update);
+        battery.addEventListener("dischargingtimechange", update);
+      } catch {
+        $("battery-status").textContent = "Informações da bateria não disponíveis neste navegador.";
+      }
+    }
+    loadBattery();
+  </script>
+</body>
+</html>
