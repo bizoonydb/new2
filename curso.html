@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CURSO</title>
+<title>CURSO | DIGITAL BOARD</title>
 
 <style>
 * {
@@ -13,108 +13,343 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
-    background: #030712;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #020711;
+    font-family: Arial, sans-serif;
     color: white;
+}
+
+body {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Fundo futurista */
-body::before {
-    content: "";
-    position: absolute;
+/* FUNDO */
+.background {
+    position: fixed;
     inset: 0;
     background:
-        linear-gradient(rgba(0,150,255,0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,150,255,0.045) 1px, transparent 1px);
-    background-size: 45px 45px;
-    mask-image: linear-gradient(to bottom, transparent, black, transparent);
+        radial-gradient(ellipse at 50% 50%, #063363 0%, transparent 65%),
+        linear-gradient(135deg, #020711, #061629, #020711);
 }
 
-.glow {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    background: #006eff;
-    filter: blur(180px);
-    opacity: 0.18;
-    border-radius: 50%;
+.grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(#008cff12 1px, transparent 1px),
+        linear-gradient(90deg, #008cff12 1px, transparent 1px);
+    background-size: 35px 35px;
 }
 
-.container {
+/* CIRCUITOS */
+.circuit {
+    position: fixed;
+    width: 20vw;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #008cff);
+    box-shadow: 0 0 12px #008cff;
+    opacity: .6;
+}
+
+.c1 { top: 15%; left: 0; }
+.c2 { bottom: 15%; right: 0; transform: rotate(180deg); }
+
+/* CONTEÚDO PRINCIPAL */
+.main {
     position: relative;
     z-index: 2;
-    width: 90%;
-    max-width: 850px;
-    padding: 70px 30px;
+    width: 94%;
+    max-width: 1200px;
+    height: 88vh;
+    max-height: 850px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    align-items: center;
+    gap: 15px;
+}
+
+/* PAINÉIS LATERAIS */
+.side {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.panel {
+    position: relative;
+    height: 115px;
+    background: linear-gradient(130deg, #0b2440, #040d1b);
+    border: 1px solid #087bce75;
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    gap: 13px;
+    box-shadow: 0 0 20px #006eff12;
+}
+
+.panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #00baff;
+    box-shadow: 0 0 10px #00baff;
+}
+
+.panel-icon {
+    font-size: clamp(25px, 3vw, 42px);
+    filter: drop-shadow(0 0 8px #008cff);
+}
+
+.panel-info small {
+    color: #00aaff;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.panel-info h3 {
+    font-size: clamp(10px, 1.2vw, 14px);
+    margin-top: 7px;
+    letter-spacing: 1px;
+}
+
+.panel-info p {
+    color: #789bb9;
+    font-size: 9px;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* CENTRO */
+.center {
     text-align: center;
-    border: 1px solid rgba(0,145,255,0.25);
-    background: rgba(5,15,32,0.75);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 50px rgba(0,100,255,0.12),
-                inset 0 0 40px rgba(0,100,255,0.04);
-    border-radius: 18px;
+    padding: 15px 0;
+}
+
+.brand {
+    font-size: 11px;
+    color: #00baff;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+}
+
+.core {
+    width: 85px;
+    height: 85px;
+    margin: auto;
+    border: 2px solid #008cff;
+    transform: rotate(45deg);
+    background: #06213d;
+    box-shadow: 0 0 30px #008cff55, inset 0 0 20px #008cff33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.core span {
+    transform: rotate(-45deg);
+    font-size: 38px;
 }
 
 h1 {
-    font-size: 18px;
-    letter-spacing: 12px;
-    color: #55baff;
-    text-transform: uppercase;
-    margin-bottom: 45px;
-    text-shadow: 0 0 15px #008cff;
+    margin-top: 28px;
+    font-size: clamp(38px, 5vw, 75px);
+    letter-spacing: 10px;
+    text-shadow: 0 0 25px #008cff;
 }
 
 .line {
-    width: 70px;
-    height: 3px;
-    margin: 0 auto 35px;
-    background: #008cff;
-    box-shadow: 0 0 15px #008cff;
+    height: 2px;
+    width: 90%;
+    margin: 20px auto;
+    background: linear-gradient(90deg, transparent, #008cff, #00d9ff, #008cff, transparent);
+    box-shadow: 0 0 12px #008cff;
 }
 
 h2 {
-    font-size: clamp(40px, 8vw, 75px);
-    font-weight: 800;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 15px rgba(0,140,255,0.8),
-                 0 0 40px rgba(0,100,255,0.4);
-    animation: pulse 3s infinite ease-in-out;
+    font-size: clamp(35px, 5.5vw, 75px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #00baff;
+    text-shadow: 0 0 15px #008cff, 0 0 40px #006eff;
+    animation: glow 3s infinite;
 }
 
-.subtitle {
-    margin-top: 25px;
-    font-size: 11px;
-    letter-spacing: 5px;
-    color: #5289b9;
-    text-transform: uppercase;
+.description {
+    margin-top: 20px;
+    font-size: clamp(9px, 1.1vw, 13px);
+    letter-spacing: 2px;
+    line-height: 2;
+    color: #a9c9e8;
 }
 
+.description strong {
+    color: #00baff;
+}
+
+/* RODAPÉ */
 footer {
-    position: absolute;
-    bottom: 25px;
-    color: #315574;
-    font-size: 10px;
+    position: fixed;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #3979a9;
+    font-size: 9px;
     letter-spacing: 4px;
-    z-index: 2;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        text-shadow: 0 0 15px #008cff;
+/* DRONES */
+.drone {
+    position: fixed;
+    font-size: clamp(25px, 4vw, 55px);
+    opacity: .55;
+    filter: drop-shadow(0 0 12px #008cff);
+    animation: fly 8s ease-in-out infinite;
+}
+
+.d1 {
+    top: 4%;
+    left: 5%;
+}
+
+.d2 {
+    bottom: 6%;
+    right: 5%;
+    animation-delay: -4s;
+}
+
+@keyframes fly {
+    0%,100% { transform: translate(0, 0) rotate(-5deg); }
+    50% { transform: translate(25px, -15px) rotate(5deg); }
+}
+
+@keyframes glow {
+    50% { opacity: .65; }
+}
+
+/* AJUSTE PARA TELAS MENORES */
+@media(max-width:700px) {
+    .main {
+        width: 94%;
+        height: 90vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        gap: 7px;
     }
-    50% {
-        opacity: 0.75;
-        text-shadow: 0 0 35px #008cff;
+
+    .center {
+        grid-row: 1;
+        padding: 0;
+    }
+
+    .side {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+    }
+
+    .panel {
+        height: clamp(58px, 11vh, 85px);
+        padding: 7px;
+        gap: 6px;
+    }
+
+    .panel-icon {
+        font-size: clamp(19px, 5vw, 28px);
+    }
+
+    .panel-info small {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .panel-info h3 {
+        font-size: 9px;
+    }
+
+    .panel-info p {
+        display: none;
+    }
+
+    .brand {
+        font-size: 8px;
+        letter-spacing: 4px;
+        margin-bottom: 12px;
+    }
+
+    .core {
+        width: 48px;
+        height: 48px;
+    }
+
+    .core span {
+        font-size: 23px;
+    }
+
+    h1 {
+        margin-top: 18px;
+        font-size: clamp(30px, 9vw, 48px);
+        letter-spacing: 7px;
+    }
+
+    .line {
+        margin: 10px auto;
+    }
+
+    h2 {
+        font-size: clamp(30px, 9vw, 50px);
+    }
+
+    .description {
+        font-size: 9px;
+        margin-top: 8px;
+    }
+
+    footer {
+        bottom: 5px;
+        font-size: 7px;
+    }
+
+    .d1 { top: 2%; left: 2%; }
+    .d2 { bottom: 2%; right: 2%; }
+}
+
+@media(max-height:600px) and (min-width:701px) {
+    .main {
+        height: 92vh;
+    }
+
+    .panel {
+        height: 90px;
+    }
+
+    .brand {
+        margin-bottom: 10px;
+    }
+
+    .core {
+        width: 60px;
+        height: 60px;
+    }
+
+    h1 {
+        margin-top: 18px;
+    }
+
+    .line {
+        margin: 12px auto;
+    }
+
+    .description {
+        margin-top: 10px;
     }
 }
 </style>
@@ -122,22 +357,110 @@ footer {
 
 <body>
 
-<div class="glow"></div>
+<div class="background"></div>
+<div class="grid"></div>
 
-<div class="container">
-    <h1>CURSO</h1>
+<div class="circuit c1"></div>
+<div class="circuit c2"></div>
 
-    <div class="line"></div>
+<div class="drone d1">🚁</div>
+<div class="drone d2">🚁</div>
 
-    <h2>EM BREVE</h2>
+<main class="main">
 
-    <div class="subtitle">
-        PREPARE-SE PARA O PRÓXIMO NÍVEL
-    </div>
-</div>
+    <!-- ESQUERDA -->
+    <section class="side">
+
+        <div class="panel">
+            <div class="panel-icon">📱</div>
+            <div class="panel-info">
+                <small>01 / MOBILE</small>
+                <h3>CELULARES</h3>
+                <p>Reparo eletrônico</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-icon">▦</div>
+            <div class="panel-info">
+                <small>02 / PCB</small>
+                <h3>PLACAS</h3>
+                <p>Análise de circuitos</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-icon">🔬</div>
+            <div class="panel-info">
+                <small>03 / SMD</small>
+                <h3>MICRO SOLDAGEM</h3>
+                <p>Componentes eletrônicos</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CENTRO -->
+    <section class="center">
+
+        <div class="brand">DIGITAL BOARD ACADEMY</div>
+
+        <div class="core">
+            <span>⚡</span>
+        </div>
+
+        <h1>CURSO</h1>
+
+        <div class="line"></div>
+
+        <h2>EM BREVE</h2>
+
+        <div class="description">
+            MANUTENÇÃO AVANÇADA DE PLACAS
+            <br>
+            <strong>CELULARES & DRONES</strong>
+        </div>
+
+        <div class="line"></div>
+
+    </section>
+
+    <!-- DIREITA -->
+    <section class="side">
+
+        <div class="panel">
+            <div class="panel-icon">🚁</div>
+            <div class="panel-info">
+                <small>04 / AEROSPACE</small>
+                <h3>DRONES</h3>
+                <p>Reparo e diagnóstico</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-icon">🔧</div>
+            <div class="panel-info">
+                <small>05 / TOOLS</small>
+                <h3>FERRAMENTAS</h3>
+                <p>Precisão técnica</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-icon">⚡</div>
+            <div class="panel-info">
+                <small>06 / TEST</small>
+                <h3>DIAGNÓSTICO</h3>
+                <p>Identificação de falhas</p>
+            </div>
+        </div>
+
+    </section>
+
+</main>
 
 <footer>
-    DIGITAL BOARD
+    DIGITAL BOARD • TECNOLOGIA • CONHECIMENTO • PRECISÃO
 </footer>
 
 </body>
