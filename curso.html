@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CURSO</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #030712;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fundo futurista */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(0,150,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,150,255,0.045) 1px, transparent 1px);
+    background-size: 45px 45px;
+    mask-image: linear-gradient(to bottom, transparent, black, transparent);
+}
+
+.glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    background: #006eff;
+    filter: blur(180px);
+    opacity: 0.18;
+    border-radius: 50%;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 850px;
+    padding: 70px 30px;
+    text-align: center;
+    border: 1px solid rgba(0,145,255,0.25);
+    background: rgba(5,15,32,0.75);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 50px rgba(0,100,255,0.12),
+                inset 0 0 40px rgba(0,100,255,0.04);
+    border-radius: 18px;
+}
+
+h1 {
+    font-size: 18px;
+    letter-spacing: 12px;
+    color: #55baff;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+    text-shadow: 0 0 15px #008cff;
+}
+
+.line {
+    width: 70px;
+    height: 3px;
+    margin: 0 auto 35px;
+    background: #008cff;
+    box-shadow: 0 0 15px #008cff;
+}
+
+h2 {
+    font-size: clamp(40px, 8vw, 75px);
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(0,140,255,0.8),
+                 0 0 40px rgba(0,100,255,0.4);
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.subtitle {
+    margin-top: 25px;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #5289b9;
+    text-transform: uppercase;
+}
+
+footer {
+    position: absolute;
+    bottom: 25px;
+    color: #315574;
+    font-size: 10px;
+    letter-spacing: 4px;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 15px #008cff;
+    }
+    50% {
+        opacity: 0.75;
+        text-shadow: 0 0 35px #008cff;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+    <h1>CURSO</h1>
+
+    <div class="line"></div>
+
+    <h2>EM BREVE</h2>
+
+    <div class="subtitle">
+        PREPARE-SE PARA O PRÓXIMO NÍVEL
+    </div>
+</div>
+
+<footer>
+    DIGITAL BOARD
+</footer>
+
+</body>
+</html>
