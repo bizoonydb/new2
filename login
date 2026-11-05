@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <title>LOGIN</title>
+  <title data-i18n="pageTitle">LOGIN</title>
   <style>
     body {
         font-family: Arial, sans-serif;
@@ -103,23 +103,33 @@
   <div class="header-wrap">
     <div id="topBar" class="topbar">
       <div class="buttons">
-        <a href="https://wa.me/message/6X46IDVVWEIQM1" class="button">SUPORTE
+        <a href="https://wa.me/message/6X46IDVVWEIQM1" class="button"><span data-i18n="support">SUPPORT</span>
           <img src="https://bizoonycell.weebly.com/uploads/1/3/2/9/132996655/picsart-24-06-18-11-21-43-961_orig.png" alt="WhatsApp">
         </a>
-        <a href="#" class="button">COMPRAR ACESSO
+        <a href="#" class="button"><span data-i18n="buyAccess">BUY ACCESS</span>
           <img src="https://images.vexels.com/media/users/3/136534/isolated/lists/c93f32e11dbf6b5fe3efc5be5554ec50-icone-de-cadeado.png" alt="Cadeado">
         </a>
-        <a href="https://bizoonydb.github.io/PDFJS/db/loginadm.html" class="button">LOGIN ADMIN
+        <a href="https://bizoonydb.github.io/PDFJS/db/loginadm.html" class="button"><span data-i18n="adminLogin">ADMIN LOGIN</span>
           <img src="https://bizoonycell.weebly.com/uploads/1/3/2/9/132996655/picsart-24-06-27-23-35-22-945_orig.png" alt="">
         </a>
-        <a href="https://www.facebook.com/DigitalBoardoficial" class="button">FACEBOOK
+        <a href="https://www.facebook.com/DigitalBoardoficial" class="button"><span data-i18n="facebook">FACEBOOK</span>
           <img src="https://bizoonycell.weebly.com/uploads/1/3/2/9/132996655/picsart-24-06-18-11-22-12-589_orig.png" alt="Facebook">
         </a>
-        <a href="https://cursobc.weebly.com/instagran" class="button">INSTAGRAM
+        <a href="https://cursobc.weebly.com/instagran" class="button"><span data-i18n="instagram">INSTAGRAM</span>
           <img src="https://bizoonycell.weebly.com/uploads/1/3/2/9/132996655/picsart-24-06-18-11-22-47-486_orig.png" alt="Instagram">
         </a>
       </div>
     </div>
+    <label class="language-switcher">
+      <span data-i18n="languageLabel">LANGUAGE</span>
+      <select id="languageSelector" aria-label="Language">
+        <option value="en" selected>English</option>
+        <option value="pt">Português</option>
+        <option value="es">Español</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ar">العربية</option>
+      </select>
+    </label>
   </div>
 
   <div class="main-wrap">
@@ -431,52 +441,52 @@ input[type="button"]:hover {
 <body>
     
     <div class="login-container">
-        <section class="board-console" aria-label="Esquema eletrônico de placa de smartphone">
+        <section class="board-console" aria-label="Smartphone board schematic" data-i18n-aria="boardAria">
             <div class="board-console-topline">
                 <span>BY FABIANO AGUIAR</span>
-                <span class="board-live"><i></i> SCHEMATIC ONLINE</span>
+                <span class="board-live"><i></i> <span data-i18n="schematicOnline">SCHEMATIC ONLINE</span></span>
             </div>
             <div class="board-carousel">
                 <img class="board-carousel-image" src="https://bizoonydb.github.io/new2/logo%20png.png" alt="Logo">
             </div>
             <div class="board-console-caption">
-                <span class="board-index">SMARTPHONE, DRONE, CONSOLER, OTHERS...</span>
-                <strong>DIGITAL BOARD<br><em>ESQUEMAS<br>DIGITALIZADOS</em></strong>
-                <span class="board-caption-sub">DE TÉCNICO PARA TÉCNICO</span>
+                <span class="board-index" data-i18n="boardIndex">SMARTPHONE, DRONE, CONSOLE, OTHERS...</span>
+                <strong data-i18n-html="boardSlogan">DIGITAL BOARD<br><em>SCHEMATICS<br>DIGITIZED</em></strong>
+                <span class="board-caption-sub" data-i18n="boardCaption">FROM TECHNICIAN TO TECHNICIAN</span>
             </div>
             <div class="board-console-footer">
-                <span>SCHEMATIC</span>
+                <span data-i18n="schematic">SCHEMATIC</span>
                 <span>BITMAP</span>
-                <span>HARDWARE SOLUTION</span>
-                <span>DIODA</span>
-                <span>VOLTAGE</span>
+                <span data-i18n="hardwareSolution">HARDWARE SOLUTION</span>
+                <span data-i18n="diode">DIODE</span>
+                <span data-i18n="voltage">VOLTAGE</span>
             </div>
         </section>
         <div class="login-form">
             <h1 class="login-title">DIGITAL BOARD</h1>
             <form id="loginForm">
-                <input type="text" name="username" placeholder="USER NAME" autocomplete="off"><br>
-                <input type="password" name="password" placeholder="PASSWORD..."><br>
-                <input type="button" value="LOGIN" onClick="Login()">
-                <input type="button" value="REGISTER" onClick="redirectToCadastro()">
+                <input type="text" name="username" placeholder="USER NAME" data-i18n-placeholder="username" autocomplete="off"><br>
+                <input type="password" name="password" placeholder="PASSWORD..." data-i18n-placeholder="password"><br>
+                <input type="button" value="LOGIN" data-i18n-value="login" onClick="Login()">
+                <input type="button" value="REGISTER" data-i18n-value="register" onClick="redirectToCadastro()">
                 
-                <a href="https://bizoonydb.github.io/PDFJS/db/DEMO.html" class="link-button"><span style="font-weight: bold; color: rgb(0, 0, 0);">TESTE FREE </span></a>
-                <a href="#" onClick="mostrarFormularioRedefinirSenha()"><span style="font-weight: bold; color: rgb(255, 225, 0);">reset password</span></a>
-                <label><input type="checkbox" id="remember-me" checked> <span style="font-weight: bold; color: red;">Lembrar-me</span></label><br><br>
+                <a href="https://bizoonydb.github.io/PDFJS/db/DEMO.html" class="link-button"><span style="font-weight: bold; color: rgb(0, 0, 0);" data-i18n="freeDemo">FREE DEMO</span></a>
+                <a href="#" onClick="mostrarFormularioRedefinirSenha()"><span style="font-weight: bold; color: rgb(255, 225, 0);" data-i18n="resetPassword">reset password</span></a>
+                <label><input type="checkbox" id="remember-me" checked> <span style="font-weight: bold; color: red;" data-i18n="rememberMe">Remember me</span></label><br><br>
                 <span style="font-weight: bold; color: rgb(255, 255, 255);">2.3.5</span></a><br><!-- versao verção-->               
 
                 
             </form>
         </div>
         <div class="register-form" style="display: none;">
-            <h1 class="login-title">Cadastro</h1>
+            <h1 class="login-title" data-i18n="registrationTitle">Registration</h1>
             <form id="registerForm">
-                <input type="text" name="newUsername" placeholder="New Username" autocomplete="off"><br>
-                <input type="text" name="email" id="email" placeholder="E-MAIL" required><br>
-                <input type="password" name="newPassword" placeholder="New Password"><br>
-                <input type="text" name="activationCode" placeholder="activation Code"><br> <!-- Novo campo para o código de ativação -->
-                <input type="button" value="REGISTER" onClick="Cadastro()">
-                <input type="button" value="BACK" onClick="cancelar()">
+                <input type="text" name="newUsername" placeholder="New Username" data-i18n-placeholder="newUsername" autocomplete="off"><br>
+                <input type="text" name="email" id="email" placeholder="E-MAIL" data-i18n-placeholder="email" required><br>
+                <input type="password" name="newPassword" placeholder="New Password" data-i18n-placeholder="newPassword"><br>
+                <input type="text" name="activationCode" placeholder="Activation Code" data-i18n-placeholder="activationCode"><br>
+                <input type="button" value="REGISTER" data-i18n-value="register" onClick="Cadastro()">
+                <input type="button" value="BACK" data-i18n-value="back" onClick="cancelar()">
             </form>
         </div>
         <div class="side-image">
@@ -488,52 +498,191 @@ input[type="button"]:hover {
     <!-- Popup de senha incorreta -->
     <div id="senhaIncorretaPopup" class="popup vermelho">
         <span class="close" onclick="closeSenhaIncorretaPopup()">&times;</span>
-        <p>ERROR. Please check your credentials.</p>
+        <p data-i18n="invalidCredentials">ERROR. Please check your credentials.</p>
     </div>
 
     <!-- Popup de login expirado -->
     <div id="loginExpiredPopup" class="popup amarelo">
         <span class="close" onclick="closeLoginExpiredPopup()">&times;</span>
-        <p>LOGIN EXPIRED, RENEW YOUR ACCESS!!!<br>WHATSAPP (33)98444-4376</p>
+        <p data-i18n="loginExpired">LOGIN EXPIRED, RENEW YOUR ACCESS!!! WHATSAPP (33)98444-4376</p>
     </div>
 
     <!-- Popup de cadastro bem-sucedido -->
     <div id="cadastroPopup" class="popup verde">
         <span class="close" onclick="closeCadastroPopup()">&times;</span>
-        <p>REGISTRATION COMPLETED SUCCESFULLY!</p>
+        <p data-i18n="registrationSuccess">REGISTRATION COMPLETED SUCCESSFULLY!</p>
     </div>
 
     <!-- Popup de código de ativação incorreto -->
     <div id="codigoAtivacaoIncorretoPopup" class="popup azul">
         <span class="close" onclick="closeCodigoAtivacaoIncorretoPopup()">&times;</span>
-        <p>INCORRECT ACCESS CODE, CHECK AND TRY AGAIN.</p>
+        <p data-i18n="invalidActivationCode">INCORRECT ACCESS CODE, CHECK AND TRY AGAIN.</p>
     </div>
 
     <!-- Popup de usuário já cadastrado -->
     <div id="usuarioExistentePopup" class="popup vermelho">
         <span class="close" onclick="closeUsuarioExistentePopup()">&times;</span>
-        <p>This user is already registered. Please choose another username.</p>
+        <p data-i18n="userAlreadyRegistered">This user is already registered. Please choose another username.</p>
     </div>
     <!-- Popup de preencha todos os campos -->
     <div id="preenchaTodosCamposPopup" class="popup azul">
         <span class="close" onclick="closePreenchaTodosCamposPopup()">&times;</span>
-        <p>FILL IN ALL THE DATA.</p>
+        <p data-i18n="fillAllFields">FILL IN ALL THE DATA.</p>
     </div>
     <!-- Popup de redefinir senha -->
     <div id="redefinirSenhaPopup" class="popup azul">
     <span class="close" onclick="fecharRedefinirSenhaPopup()">&times;</span>
-    <h2><span style="font-weight: bold; color: rgb(229, 255, 0);">RESET PASSWORD</span></h2>
+    <h2><span style="font-weight: bold; color: rgb(229, 255, 0);" data-i18n="resetPassword">RESET PASSWORD</span></h2>
     <form id="resetPasswordForm">
-        <input type="text" name="resetUsername" placeholder="Usuário" autocomplete="off"><br>
-        <input type="password" name="newPassword" placeholder="Nova Senha"><br>
-        <input type="password" name="confirmPassword" placeholder="Confirmar Nova Senha"><br>
-        <input type="button" value="Redefinir Senha" onClick="resetPassword()">
+        <input type="text" name="resetUsername" placeholder="Username" data-i18n-placeholder="username" autocomplete="off"><br>
+        <input type="password" name="newPassword" placeholder="New Password" data-i18n-placeholder="newPassword"><br>
+        <input type="password" name="confirmPassword" placeholder="Confirm New Password" data-i18n-placeholder="confirmPassword"><br>
+        <input type="button" value="Reset Password" data-i18n-value="resetPassword" onClick="resetPassword()">
     </form>
 
 
     </div>
     
     <script>
+const languageMessages = {
+    en: {
+    pageTitle: "LOGIN", languageLabel: "LANGUAGE", support: "SUPPORT", buyAccess: "BUY ACCESS", adminLogin: "ADMIN LOGIN", facebook: "FACEBOOK", instagram: "INSTAGRAM",
+        boardAria: "Smartphone board schematic", schematicOnline: "SCHEMATIC ONLINE", boardIndex: "SMARTPHONE, DRONE, CONSOLE, OTHERS...",
+        boardSlogan: "DIGITAL BOARD<br><em>SCHEMATICS<br>DIGITIZED</em>", boardCaption: "FROM TECHNICIAN TO TECHNICIAN",
+        schematic: "SCHEMATIC", hardwareSolution: "HARDWARE SOLUTION", diode: "DIODE", voltage: "VOLTAGE",
+        username: "USERNAME", password: "PASSWORD...", login: "LOGIN", register: "REGISTER", freeDemo: "FREE DEMO",
+        resetPassword: "RESET PASSWORD", rememberMe: "Remember me", registrationTitle: "REGISTRATION", newUsername: "New username",
+        email: "EMAIL", newPassword: "New password", activationCode: "Activation code", back: "BACK",
+        invalidCredentials: "ERROR. Please check your credentials.", loginExpired: "LOGIN EXPIRED, RENEW YOUR ACCESS!!! WHATSAPP (33) 98444-4376",
+        registrationSuccess: "REGISTRATION COMPLETED SUCCESSFULLY!", invalidActivationCode: "INCORRECT ACCESS CODE. CHECK AND TRY AGAIN.",
+        userAlreadyRegistered: "This user is already registered. Please choose another username.", fillAllFields: "PLEASE FILL IN ALL FIELDS.",
+        confirmPassword: "Confirm new password", reset: "RESET PASSWORD", loading: "PLEASE WAIT, LOGGING IN...", accessExpired: "ACCESS EXPIRED, RENEW IT<br><h5>WHATSAPP +55 33 98444-4376</h5>",
+        userNotFound: "User not found.", passwordsMismatch: "The passwords do not match.",
+        passwordResetSuccess: "Password reset successfully!", requiredFields: "Please fill in all fields."
+    },
+    pt: {
+        pageTitle: "ENTRAR", languageLabel: "IDIOMA", support: "SUPORTE", buyAccess: "COMPRAR ACESSO", adminLogin: "LOGIN ADMIN", facebook: "FACEBOOK", instagram: "INSTAGRAM",
+        boardAria: "Esquema de placa de smartphone", schematicOnline: "ESQUEMA ONLINE", boardIndex: "SMARTPHONE, DRONE, CONSOLE E OUTROS...",
+        boardSlogan: "DIGITAL BOARD<br><em>ESQUEMAS<br>DIGITALIZADOS</em>", boardCaption: "DE TÉCNICO PARA TÉCNICO",
+        schematic: "ESQUEMA", hardwareSolution: "SOLUÇÃO DE HARDWARE", diode: "DIODO", voltage: "TENSÃO",
+        username: "NOME DE USUÁRIO", password: "SENHA...", login: "ENTRAR", register: "CADASTRAR", freeDemo: "TESTE GRÁTIS",
+        resetPassword: "REDEFINIR SENHA", rememberMe: "Lembrar-me", registrationTitle: "CADASTRO", newUsername: "Novo usuário",
+        email: "E-MAIL", newPassword: "Nova senha", activationCode: "Código de ativação", back: "VOLTAR",
+        invalidCredentials: "ERRO. Verifique suas credenciais.", loginExpired: "LOGIN EXPIRADO. RENOVE SEU ACESSO!!! WHATSAPP (33) 98444-4376",
+        registrationSuccess: "CADASTRO CONCLUÍDO COM SUCESSO!", invalidActivationCode: "CÓDIGO DE ACESSO INCORRETO. VERIFIQUE E TENTE NOVAMENTE.",
+        userAlreadyRegistered: "Este usuário já está cadastrado. Escolha outro nome de usuário.", fillAllFields: "PREENCHA TODOS OS CAMPOS.",
+        confirmPassword: "Confirme a nova senha", reset: "REDEFINIR SENHA", loading: "AGUARDE, FAZENDO LOGIN...", accessExpired: "ACESSO EXPIRADO, RENOVE-O<br><h5>WHATSAPP +55 33 98444-4376</h5>",
+        userNotFound: "Usuário não encontrado.", passwordsMismatch: "As senhas não coincidem.",
+        passwordResetSuccess: "Senha redefinida com sucesso!", requiredFields: "Por favor, preencha todos os campos."
+    },
+    es: {
+        pageTitle: "INICIAR SESIÓN", languageLabel: "IDIOMA", support: "SOPORTE", buyAccess: "COMPRAR ACCESO", adminLogin: "INICIO ADMIN", facebook: "FACEBOOK", instagram: "INSTAGRAM",
+        boardAria: "Esquema de placa de smartphone", schematicOnline: "ESQUEMA EN LÍNEA", boardIndex: "SMARTPHONE, DRON, CONSOLA Y OTROS...",
+        boardSlogan: "DIGITAL BOARD<br><em>ESQUEMAS<br>DIGITALIZADOS</em>", boardCaption: "DE TÉCNICO A TÉCNICO",
+        schematic: "ESQUEMA", hardwareSolution: "SOLUCIÓN DE HARDWARE", diode: "DIODO", voltage: "VOLTAJE",
+        username: "USUARIO", password: "CONTRASEÑA...", login: "ENTRAR", register: "REGISTRARSE", freeDemo: "PRUEBA GRATIS",
+        resetPassword: "RESTABLECER CONTRASEÑA", rememberMe: "Recordarme", registrationTitle: "REGISTRO", newUsername: "Nuevo usuario",
+        email: "CORREO ELECTRÓNICO", newPassword: "Nueva contraseña", activationCode: "Código de activación", back: "VOLVER",
+        invalidCredentials: "ERROR. Comprueba tus credenciales.", loginExpired: "SESIÓN CADUCADA. ¡RENUEVA TU ACCESO! WHATSAPP (33) 98444-4376",
+        registrationSuccess: "¡REGISTRO COMPLETADO CON ÉXITO!", invalidActivationCode: "CÓDIGO DE ACCESO INCORRECTO. COMPRUÉBALO E INTÉNTALO DE NUEVO.",
+        userAlreadyRegistered: "Este usuario ya está registrado. Elige otro nombre de usuario.", fillAllFields: "COMPLETA TODOS LOS CAMPOS.",
+        confirmPassword: "Confirma la nueva contraseña", reset: "RESTABLECER CONTRASEÑA", loading: "ESPERA, INICIANDO SESIÓN...", accessExpired: "ACCESO CADUCADO, RENUÉVALO<br><h5>WHATSAPP +55 33 98444-4376</h5>",
+        userNotFound: "Usuario no encontrado.", passwordsMismatch: "Las contraseñas no coinciden.",
+        passwordResetSuccess: "¡Contraseña restablecida correctamente!", requiredFields: "Por favor, completa todos los campos."
+    },
+    hi: {
+        pageTitle: "लॉगिन", languageLabel: "भाषा", support: "सहायता", buyAccess: "एक्सेस खरीदें", adminLogin: "एडमिन लॉगिन", facebook: "FACEBOOK", instagram: "INSTAGRAM",
+        boardAria: "स्मार्टफोन बोर्ड का योजनाचित्र", schematicOnline: "योजनाचित्र ऑनलाइन", boardIndex: "स्मार्टफोन, ड्रोन, कंसोल और अन्य...",
+        boardSlogan: "DIGITAL BOARD<br><em>डिजिटल<br>योजनाचित्र</em>", boardCaption: "तकनीशियन से तकनीशियन तक",
+        schematic: "योजनाचित्र", hardwareSolution: "हार्डवेयर समाधान", diode: "डायोड", voltage: "वोल्टेज",
+        username: "उपयोगकर्ता नाम", password: "पासवर्ड...", login: "लॉगिन", register: "पंजीकरण", freeDemo: "मुफ़्त डेमो",
+        resetPassword: "पासवर्ड रीसेट करें", rememberMe: "मुझे याद रखें", registrationTitle: "पंजीकरण", newUsername: "नया उपयोगकर्ता नाम",
+        email: "ईमेल", newPassword: "नया पासवर्ड", activationCode: "सक्रियण कोड", back: "वापस",
+        invalidCredentials: "त्रुटि। कृपया अपनी जानकारी जाँचें।", loginExpired: "लॉगिन की अवधि समाप्त। एक्सेस नवीनीकृत करें!!! WhatsApp (33) 98444-4376",
+        registrationSuccess: "पंजीकरण सफलतापूर्वक पूरा हुआ!", invalidActivationCode: "गलत एक्सेस कोड। जाँचें और फिर प्रयास करें।",
+        userAlreadyRegistered: "यह उपयोगकर्ता पहले से पंजीकृत है। दूसरा उपयोगकर्ता नाम चुनें।", fillAllFields: "कृपया सभी फ़ील्ड भरें।",
+        confirmPassword: "नए पासवर्ड की पुष्टि करें", reset: "पासवर्ड रीसेट करें", loading: "कृपया प्रतीक्षा करें, लॉगिन हो रहा है...", accessExpired: "एक्सेस समाप्त हो गया। नवीनीकृत करें<br><h5>WHATSAPP +55 33 98444-4376</h5>",
+        userNotFound: "उपयोगकर्ता नहीं मिला।", passwordsMismatch: "पासवर्ड मेल नहीं खाते।",
+        passwordResetSuccess: "पासवर्ड सफलतापूर्वक रीसेट हुआ!", requiredFields: "कृपया सभी फ़ील्ड भरें।"
+    },
+    ar: {
+        pageTitle: "تسجيل الدخول", languageLabel: "اللغة", support: "الدعم", buyAccess: "شراء الوصول", adminLogin: "دخول المسؤول", facebook: "FACEBOOK", instagram: "INSTAGRAM",
+        boardAria: "مخطط لوحة الهاتف الذكي", schematicOnline: "المخطط متصل", boardIndex: "الهواتف الذكية والطائرات المسيّرة وأجهزة الألعاب وغيرها...",
+        boardSlogan: "DIGITAL BOARD<br><em>مخططات<br>رقمية</em>", boardCaption: "من فني إلى فني",
+        schematic: "مخطط", hardwareSolution: "حلول الأجهزة", diode: "صمام ثنائي", voltage: "الجهد",
+        username: "اسم المستخدم", password: "كلمة المرور...", login: "دخول", register: "تسجيل", freeDemo: "نسخة تجريبية مجانية",
+        resetPassword: "إعادة تعيين كلمة المرور", rememberMe: "تذكرني", registrationTitle: "التسجيل", newUsername: "اسم مستخدم جديد",
+        email: "البريد الإلكتروني", newPassword: "كلمة مرور جديدة", activationCode: "رمز التفعيل", back: "رجوع",
+        invalidCredentials: "خطأ. تحقق من بيانات الدخول.", loginExpired: "انتهت صلاحية الدخول. جدد وصولك!!! واتساب (33) 98444-4376",
+        registrationSuccess: "اكتمل التسجيل بنجاح!", invalidActivationCode: "رمز وصول غير صحيح. تحقق وحاول مرة أخرى.",
+        userAlreadyRegistered: "اسم المستخدم مسجل بالفعل. اختر اسمًا آخر.", fillAllFields: "يرجى ملء جميع الحقول.",
+        confirmPassword: "أكد كلمة المرور الجديدة", reset: "إعادة تعيين كلمة المرور", loading: "يرجى الانتظار، جارٍ تسجيل الدخول...", accessExpired: "انتهت صلاحية الوصول. يرجى التجديد<br><h5>واتساب +55 33 98444-4376</h5>",
+        userNotFound: "المستخدم غير موجود.", passwordsMismatch: "كلمتا المرور غير متطابقتين.",
+        passwordResetSuccess: "تمت إعادة تعيين كلمة المرور بنجاح!", requiredFields: "يرجى ملء جميع الحقول."
+    }
+};
+
+const languageTags = { en: "en", pt: "pt-BR", es: "es", hi: "hi", ar: "ar" };
+const languagePreferenceKey = "preferredLanguage";
+const languageSelector = document.getElementById("languageSelector");
+
+let initialLanguage = "en";
+try {
+    const savedLanguage = localStorage.getItem(languagePreferenceKey);
+    if (savedLanguage && Object.prototype.hasOwnProperty.call(languageMessages, savedLanguage)) {
+        initialLanguage = savedLanguage;
+    }
+} catch (error) {
+    console.error("Could not load the saved language preference.", error);
+}
+
+function applyLanguage(language) {
+    const messages = languageMessages[language] || languageMessages.en;
+    document.documentElement.lang = languageTags[language] || "en";
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+        const message = messages[element.dataset.i18n];
+        if (message !== undefined) element.textContent = message;
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(element => {
+        const message = messages[element.dataset.i18nHtml];
+        if (message !== undefined) element.innerHTML = message;
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+        const message = messages[element.dataset.i18nPlaceholder];
+        if (message !== undefined) element.placeholder = message;
+    });
+    document.querySelectorAll("[data-i18n-value]").forEach(element => {
+        const message = messages[element.dataset.i18nValue];
+        if (message !== undefined) element.value = message;
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(element => {
+        const message = messages[element.dataset.i18nAria];
+        if (message !== undefined) element.setAttribute("aria-label", message);
+    });
+
+    const loadingMessage = document.querySelector("#loadingMessage span");
+    if (loadingMessage) loadingMessage.textContent = messages.loading;
+}
+
+function showTranslatedAlert(messageKey) {
+    const language = languageSelector.value;
+    alert(languageMessages[language][messageKey]);
+}
+
+languageSelector.value = initialLanguage;
+languageSelector.addEventListener("change", event => {
+    const selectedLanguage = event.target.value;
+    applyLanguage(selectedLanguage);
+    try {
+        localStorage.setItem(languagePreferenceKey, selectedLanguage);
+    } catch (error) {
+        console.error("Could not save the selected language preference.", error);
+    }
+});
+applyLanguage(initialLanguage);
+
         // Função para exibir o formulário de redefinição de senha
 function mostrarFormularioRedefinirSenha() {
     var redefinirSenhaPopup = document.getElementById('redefinirSenhaPopup');
@@ -560,12 +709,12 @@ function resetPassword() {
     });
 
     if (!usuarioExistente) {
-        alert('User not found.');
+        showTranslatedAlert('userNotFound');
         return;
     }
 
     if (newPassword !== confirmPassword) {
-        alert('The passwords do not match.');
+        showTranslatedAlert('passwordsMismatch');
         return;
     }
 
@@ -579,7 +728,7 @@ function resetPassword() {
     fecharRedefinirSenhaPopup();
 
     // Exibe mensagem de sucesso (opcional)
-    alert('Password reset successfully!');
+    showTranslatedAlert('passwordResetSuccess');
 }
 
         // Função para verificar se localStorage é suportado
@@ -653,7 +802,7 @@ function Cadastro() {
                 var usuariosCadastrados = getUsuariosCadastrados();
 
             if (!newUsername || !newPassword || !activationCode) {
-                alert('Por favor, preencha todos os campos.');
+                showTranslatedAlert('requiredFields');
                 return;
             }
 
@@ -2098,6 +2247,174 @@ function Cadastro() {
             font-size: 28px;
         }
 
+        #loginExpiredPopup {
+            width: min(440px, calc(100vw - 32px));
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 65, 75, 0.85);
+            border-radius: 10px;
+            background:
+                linear-gradient(rgba(24, 4, 9, 0.97), rgba(13, 3, 7, 0.97)),
+                repeating-linear-gradient(0deg, transparent 0 9px, rgba(255, 50, 65, 0.08) 10px),
+                #100408 !important;
+            box-shadow: 0 0 0 4px rgba(35, 5, 10, 0.82), 0 18px 55px rgba(0, 0, 0, 0.75), 0 0 30px rgba(255, 35, 55, 0.3);
+            color: #ffe8e9;
+        }
+
+        #loginExpiredPopup p {
+            padding: 8px 18px;
+            color: #ff6b73;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 18px;
+            line-height: 1.6;
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 10px rgba(255, 45, 60, 0.55);
+        }
+
+        #loginExpiredPopup .close {
+            color: #ff858b;
+        }
+
+        .popup:not(#redefinirSenhaPopup) {
+            --modal-accent: #35caff;
+            --modal-glow: rgba(0, 157, 255, 0.28);
+            width: min(440px, calc(100vw - 32px));
+            box-sizing: border-box;
+            border: 1px solid var(--modal-accent);
+            border-radius: 10px;
+            background:
+                linear-gradient(rgba(2, 8, 15, 0.97), rgba(2, 8, 15, 0.97)),
+                repeating-linear-gradient(0deg, transparent 0 9px, var(--modal-glow) 10px),
+                #030910 !important;
+            box-shadow: 0 0 0 4px rgba(4, 13, 23, 0.82), 0 18px 55px rgba(0, 0, 0, 0.75), 0 0 30px var(--modal-glow);
+            color: #e6f7ff;
+        }
+
+        .popup:not(#redefinirSenhaPopup).vermelho,
+        .popup:not(#redefinirSenhaPopup)#loginExpiredPopup {
+            --modal-accent: #ff5964;
+            --modal-glow: rgba(255, 35, 55, 0.16);
+        }
+
+        .popup:not(#redefinirSenhaPopup).amarelo {
+            --modal-accent: #ffc857;
+            --modal-glow: rgba(255, 190, 50, 0.15);
+        }
+
+        .popup:not(#redefinirSenhaPopup).verde {
+            --modal-accent: #5bdcbc;
+            --modal-glow: rgba(40, 226, 180, 0.15);
+        }
+
+        .popup:not(#redefinirSenhaPopup).azul {
+            --modal-accent: #35caff;
+            --modal-glow: rgba(0, 157, 255, 0.18);
+        }
+
+        .popup:not(#redefinirSenhaPopup) p {
+            padding: 8px 18px;
+            color: var(--modal-accent);
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 18px;
+            line-height: 1.6;
+            letter-spacing: 0.06em;
+            text-shadow: 0 0 10px var(--modal-glow);
+        }
+
+        .popup:not(#redefinirSenhaPopup) .close {
+            top: 8px;
+            right: 12px;
+            color: var(--modal-accent);
+            text-shadow: 0 0 10px var(--modal-glow);
+        }
+
+        .loading-message {
+            gap: 16px;
+            width: min(390px, calc(100vw - 40px));
+            box-sizing: border-box;
+            padding: 22px 24px;
+            border: 1px solid rgba(32, 181, 255, 0.7);
+            border-radius: 8px;
+            background:
+                linear-gradient(rgba(2, 8, 15, 0.96), rgba(2, 8, 15, 0.96)),
+                repeating-linear-gradient(0deg, transparent 0 9px, rgba(33, 130, 170, 0.08) 10px),
+                #030910;
+            box-shadow: 0 0 0 4px rgba(4, 13, 23, 0.82), 0 18px 55px rgba(0, 0, 0, 0.75), 0 0 28px rgba(0, 157, 255, 0.24);
+            color: #8fe7ff;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-shadow: 0 0 10px rgba(32, 181, 255, 0.7);
+        }
+
+        .loading-spinner {
+            flex: 0 0 34px;
+            width: 34px;
+            height: 34px;
+            margin-left: auto;
+            border: 3px solid rgba(32, 181, 255, 0.18);
+            border-top-color: #35caff;
+            border-right-color: #5bdcbc;
+            box-shadow: 0 0 12px rgba(32, 181, 255, 0.45);
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 50%;
+            right: 14px;
+            z-index: 1000000;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transform: translateY(-50%);
+            color: #8fe7ff;
+            font: 700 10px Consolas, "Courier New", monospace;
+            letter-spacing: 0.12em;
+            text-shadow: 0 0 8px rgba(32, 181, 255, 0.55);
+        }
+
+        .language-switcher select {
+            min-height: 34px;
+            max-width: 130px;
+            padding: 5px 26px 5px 9px;
+            border: 1px solid rgba(32, 181, 255, 0.75);
+            border-radius: 5px;
+            background: rgba(3, 12, 22, 0.96);
+            box-shadow: 0 0 12px rgba(0, 157, 255, 0.2);
+            color: #e6f7ff;
+            font: 700 12px Consolas, "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        .language-switcher select:focus {
+            outline: 2px solid rgba(32, 181, 255, 0.32);
+            outline-offset: 2px;
+        }
+
+        .language-switcher option {
+            background: #030910;
+            color: #e6f7ff;
+        }
+
+        @media (max-width: 760px) {
+            .language-switcher {
+                top: 8px;
+                right: 8px;
+                transform: none;
+                gap: 4px;
+            }
+
+            .language-switcher > span {
+                display: none;
+            }
+
+            .language-switcher select {
+                min-height: 30px;
+                max-width: 112px;
+                font-size: 11px;
+            }
+        }
+
         body {
             visibility: visible;
         }
@@ -2109,7 +2426,7 @@ function Cadastro() {
     <!-- A sobreposição e alerta serão adicionados dinamicamente -->
     <div id="overlay" class="overlay" style="display: none;"></div>
     <div id="alert" class="alert" style="display: none;">
-        <span class="message">ACESSO EXPIRADO, RENOVE-O <br><h5>WHATSAPP +55 33 98444-4376</h5></span>
+        <span class="message" data-i18n-html="accessExpired">ACCESS EXPIRED, RENEW IT<br><h5>WHATSAPP +55 33 98444-4376</h5></span>
         <button class="close-btn" onclick="fecharAlerta()">×</button>
     </div>
 
